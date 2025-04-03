@@ -1,54 +1,77 @@
-# Activity-3
+# Activity 8
 
-1	Use Big O Notation to describe the time complexity of an algorithm that takes 4N+16 steps . - 1 pt
+1. Will demonstrate in Video.
 
-The time complexity is 0(N) because 4 and 16.
-
-2 Use Big O Notation to describe the time complexity of an algorithm that takes 2N2  . 1 pt
-
-For 2N^2  N^2 is is the dominant term so the 2 is dropped and the time complexity is 0(N^2).
+2 [log base 2 1000] = 10
 
 
-3 Use Big O Notation to describe the time complexity of the following function, which returns the sum of all numbers of an array after the numbers have been doubled: - 2 pt
-def double_then_sum(array) 
-	doubled_array = []
 
-	array.each do |number| 
-		doubled_array << number *= 2
-	end
+3.
+int main() {  
+    int arr[] = {1, 5, 9, 2, 4, 10, 6, 3, 8};  
+    int n = sizeof(arr) / sizeof(arr[0]);  
+    Node* root = nullptr;  
+      
+    // Insertion operation  
+    for (int i = 0; i < n; i++) {  
+        root = insert(root, arr[i]);  
+    }  
+      
+    // Find and print the maximum value  
+    cout << "Maximum value in the BST: " << findMax(root) << endl;  
+      
+    return 0;  
+}  
 
-	sum = 0
+4.
 
-	doubled_array.each do |number| 
-		sum += number
-	end
-	return sum 
-end
 
-The 1st loop iterates through array once to double numbers -0(N)
-The 2nd loop iterates through doubled array once to sum -0(N)
-Then add the operation 0(N)+0(N)= 0(N) so the time complexity is 0(N).
 
-	4	Use Big O Notation to describe the time complexity of the following function, which accepts an array of strings and prints each string in multiple cases: - 2 pts
-def multiple_cases(array) 
-	array.each do |string|
-		puts string.upcase 
-		puts string.downcase 
-		puts string.capitalize
-	end 
-end
-
-This is a multiple case function. There is a single loop through the array -0(N) there are three operation performed through each element. The complexity is 0(N) because constants don’t affect Big O.
-
-	5	The next function iterates over an array of numbers, and for each number whose index is even, it prints the sum of that number plus every number in the array. What is this function’s efficiency in terms of Big O Notation? - 4 pts
-def every_other(array) 
-	array.each_with_index do |number, index|
-		if index.even?
-			array.each do |other_number|
-            	puts number + other_number
-			end 
-		end
-	end 
-end
-
-The outer loop iterates though entire array so 0(N). The inner loop runes N/2 times. So the equation is N/2*N=N^2/2 so the time complexity is 0(N^2) when you drop the constants.
+#include <iostream>  
+using namespace std;  
+  
+struct Node {  
+    int key;  
+    Node* left;  
+    Node* right;  
+      
+    Node(int val) : key(val), left(nullptr), right(nullptr) {}  
+};  
+  
+Node* insert(Node* root, int key) {  
+    if (root == nullptr) {  
+        return new Node(key);  
+    }  
+    if (key < root->key) {  
+        root->left = insert(root->left, key);  
+    } else { // key >= root->key  
+        root->right = insert(root->right, key);  
+    }  
+    return root;  
+}  
+  
+void inorder(Node* root) {  
+    if (root != nullptr) {  
+        inorder(root->left);  
+        cout << root->key << " ";  
+        inorder(root->right);  
+    }  
+}  
+  
+int main() {  
+    int arr[] = {1, 5, 9, 2, 4, 10, 6, 3, 8};  
+    int n = sizeof(arr) / sizeof(arr[0]);  
+    Node* root = nullptr;  
+      
+    // Insertion operation  
+    for (int i = 0; i < n; i++) {  
+        root = insert(root, arr[i]);  
+    }  
+      
+    // Optional: Print inorder traversal of BST  
+    cout << \"Inorder traversal of BST: \" << endl;  
+    inorder(root);  
+    cout << endl;  
+      
+    return 0;  
+}  
